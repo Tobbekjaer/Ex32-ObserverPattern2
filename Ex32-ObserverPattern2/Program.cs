@@ -7,6 +7,7 @@ namespace Ex32_ObserverPattern2
     {
         static void Main(string[] args)
         {
+            // Test academy and student classes
             Academy p = new Academy("UCL", "Seebladsgade");
 
             Student s1 = new Student(p, "Jens");
@@ -27,6 +28,30 @@ namespace Ex32_ObserverPattern2
             p.Attach(s4);
 
             p.Message = "Lektiecaféen er åben!";
+
+            Console.WriteLine();
+
+            // Test university and teacher classes
+            University u = new University("UCLA", "Los Angeles Avenue");
+
+            Teacher t1 = new Teacher(u, "Mads");
+            Teacher t2 = new Teacher(u, "Rallo");
+            Teacher t3 = new Teacher(u, "Oskar");
+            Teacher t4 = new Teacher(u, "Kalle");
+
+            u.Attach(t1);
+            u.Attach(t2);
+            u.Attach(t3);
+
+            u.Message = "There's a meeting at the goathouse!"; 
+
+            u.Detach(t3);
+
+            u.Attach(t4);
+
+            u.Message = "Join the Blue Raiders game today at 4 PM!";
+
+            u.Detach(t2);
 
             Console.ReadLine();
         }
