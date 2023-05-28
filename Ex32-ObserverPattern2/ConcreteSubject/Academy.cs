@@ -13,7 +13,7 @@ namespace Ex32_ObserverPattern2.ConcreteSubject
     public delegate void NotifyHandler();
     public class Academy : Organization, ISubject
     {
-        private NotifyHandler students;
+        public NotifyHandler Students;
 
         private string message;
 
@@ -22,7 +22,7 @@ namespace Ex32_ObserverPattern2.ConcreteSubject
             get { return message; }
             set {
                 message = value;
-                Notify();
+                Students();
             }
         }
 
@@ -33,17 +33,17 @@ namespace Ex32_ObserverPattern2.ConcreteSubject
 
         public void Attach(IObserver observer)
         {
-            students += observer.Update;
+            Students += observer.Update;
         }
 
         public void Detach(IObserver observer)
         {
-            students -= observer.Update;
+            Students -= observer.Update;
         }
 
         public void Notify()
         {
-            students();
+            Students();
         }
 
 
