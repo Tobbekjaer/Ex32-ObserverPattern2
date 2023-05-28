@@ -9,7 +9,7 @@ using System.Xml.Linq;
 
 namespace Ex32_ObserverPattern2.ConcreteObserver
 {
-    public class Student : Person, IObserver
+    public class Student : Person
     {
         Academy academy;
         public string Message { get; set; }

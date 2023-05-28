@@ -19,17 +19,17 @@ namespace Ex32_ObserverPattern2
             //p.Attach(s2);
             //p.Attach(s3);
 
-            p.Students += s1.Update;
-            p.Students += s2.Update;
-            p.Students += s3.Update;
+            p.MessageChanged += s1.Update;
+            p.MessageChanged += s2.Update;
+            p.MessageChanged += s3.Update;
 
             p.Message = "Så er der julefrokost!";
 
-            p.Students -= s1.Update;
+            p.MessageChanged -= s1.Update;
 
             p.Message = "Så er der fredagsbar!";
 
-            p.Students += s4.Update;
+            p.MessageChanged += s4.Update;
 
             p.Message = "Lektiecaféen er åben!";
 

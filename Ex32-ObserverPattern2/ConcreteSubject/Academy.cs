@@ -10,10 +10,10 @@ using System.Xml.Linq;
 
 namespace Ex32_ObserverPattern2.ConcreteSubject
 {
-    public delegate void NotifyHandler();
-    public class Academy : Organization, ISubject
+    public delegate void OnMessageChanged();
+    public class Academy : Organization
     {
-        public NotifyHandler Students;
+        public OnMessageChanged MessageChanged;
 
         private string message;
 
@@ -22,7 +22,7 @@ namespace Ex32_ObserverPattern2.ConcreteSubject
             get { return message; }
             set {
                 message = value;
-                Students();
+                MessageChanged();
             }
         }
 
@@ -31,19 +31,9 @@ namespace Ex32_ObserverPattern2.ConcreteSubject
             Address = address;
         }
 
-        public void Attach(IObserver observer)
-        {
-            Students += observer.Update;
-        }
-
-        public void Detach(IObserver observer)
-        {
-            Students -= observer.Update;
-        }
-
         public void Notify()
         {
-            Students();
+            MessageChanged();
         }
 
 
