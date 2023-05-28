@@ -15,12 +15,10 @@ namespace Ex32_ObserverPattern2
             Student s3 = new Student(p, "Susan");
             Student s4 = new Student(p, "Tobias");
 
-            //p.Attach(s1);
-            //p.Attach(s2);
-            //p.Attach(s3);
-
             p.MessageChanged += s1.Update;
             p.MessageChanged += s2.Update;
+            // If MessageChanged is null only the messages afterwards will be printed to the console
+            // p.MessageChanged = null;
             p.MessageChanged += s3.Update;
 
             p.Message = "Så er der julefrokost!";
