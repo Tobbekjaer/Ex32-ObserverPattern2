@@ -8,20 +8,20 @@ using System.Threading.Tasks;
 
 namespace Ex32_ObserverPattern2.ConcreteObserver
 {
-    public class Teacher : Person, IObserver
-    {
-        University university;
-        public string Message { get; set; }
+    //public class Teacher : Person, IObserver
+    //{
+    //    University university;
+    //    public string Message { get; set; }
 
-        public Teacher(University university, string name) : base(name)
-        {
-            this.university = university;
-            this.Message = university.Message; 
-        }
+    //    public Teacher(University university, string name) : base(name)
+    //    {
+    //        this.university = university;
+    //        this.Message = university.Message; 
+    //    }
 
-        public void Update()
-        {
-            Message = university.Message; 
-        }
-    }
+    //    public void Update()
+    //    {
+    //        Message = university.Message; 
+    //    }
+    //}
 }

@@ -10,9 +10,10 @@ using System.Xml.Linq;
 
 namespace Ex32_ObserverPattern2.ConcreteSubject
 {
+    public delegate void NotifyHandler();
     public class Academy : Organization, ISubject
     {
-        private List<IObserver> students = new List<IObserver>();
+        private NotifyHandler students;
 
         private string message;
 
@@ -32,19 +33,17 @@ namespace Ex32_ObserverPattern2.ConcreteSubject
 
         public void Attach(IObserver observer)
         {
-            students.Add(observer);
+            students += observer.Update;
         }
 
         public void Detach(IObserver observer)
         {
-           students.Remove(observer);
+            students -= observer.Update;
         }
 
         public void Notify()
         {
-            foreach (Student student in students) {
-                Console.WriteLine($"Studerende {student.Name} modtog nyheden '{Message}' fra akademiet {Name}");
-            }
+            students();
         }
 
 

@@ -21,7 +21,8 @@ namespace Ex32_ObserverPattern2.ConcreteObserver
        
         public void Update()
         {
-           Message = academy.Message;
+           Message = academy.Message;     
+           Console.WriteLine($"Studerende {Name} modtog nyheden '{Message}' fra akademiet {academy.Name}");
         }
     }
 }
