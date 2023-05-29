@@ -34,26 +34,28 @@ namespace Ex32_ObserverPattern2
             Console.WriteLine();
 
             // Test university and teacher classes
-            //University u = new University("UCLA", "Los Angeles Avenue");
+            University u = new University("UCLA", "Los Angeles Avenue");
 
-            //Teacher t1 = new Teacher(u, "Mads");
-            //Teacher t2 = new Teacher(u, "Rallo");
-            //Teacher t3 = new Teacher(u, "Oskar");
-            //Teacher t4 = new Teacher(u, "Kalle");
+            Teacher t1 = new Teacher(u, "Mads");
+            Teacher t2 = new Teacher(u, "Rallo");
+            Teacher t3 = new Teacher(u, "Oskar");
+            Teacher t4 = new Teacher(u, "Kalle");
 
-            //u.Attach(t1);
-            //u.Attach(t2);
-            //u.Attach(t3);
+            // Calling MessageChanged delegate and adding it with the Update method in the teacher class
+            u.MessageChanged += t1.Update;
+            u.MessageChanged += t2.Update;
+            u.MessageChanged += t3.Update;
 
-            //u.Message = "There's a meeting at the goathouse!"; 
+            u.Message = "There's a meeting at the goathouse!";
 
-            //u.Detach(t3);
+            // Calling MessageChanged delegate and removing it from MessageChanged
+            u.MessageChanged -= t3.Update;
 
-            //u.Attach(t4);
+            u.MessageChanged += t4.Update;
 
-            //u.Message = "Join the Blue Raiders game today at 4 PM!";
+            u.Message = "Join the Blue Raiders game today at 4 PM!";
 
-            //u.Detach(t2);
+            u.MessageChanged -= t2.Update;
 
             Console.ReadLine();
         }

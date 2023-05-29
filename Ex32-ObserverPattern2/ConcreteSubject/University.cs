@@ -9,47 +9,37 @@ using System.Threading.Tasks;
 
 namespace Ex32_ObserverPattern2.ConcreteSubject
 {
-    //public class University : Organization, ISubject
-    //{
-    //    private List<IObserver> teachers = new List<IObserver>();
+    public delegate void UniversityMessageChanged();
 
+    public class University : Organization
+    {
+        // Implementing OnMessageChanged delegate to handle notifications
+        public UniversityMessageChanged MessageChanged;
 
-    //    private string _message;
+        private string _message;
 
-    //    public string Message
-    //    {
-    //        get { return _message; }
-    //        set { 
-    //            _message = value;
-    //            Notify();
-    //        }
-    //    }
+        public string Message
+        {
+            get { return _message; }
+            set
+            {
+                _message = value;
+                // Run MessageChanged delegate to notify all attached observers
+                // By calling MessageChanged it's calling all attached methods at once
+                MessageChanged();
+            }
+        }
 
-    //    public University(string name, string address) : base(name)
-    //    {
-    //        Address = address;
-    //    }
+        public University(string name, string address) : base(name)
+        {
+            Address = address;
+        }
 
-    //    public void Attach(IObserver observer)
-    //    {
-    //        teachers.Add(observer);
-    //    }
-
-    //    public void Detach(IObserver observer)
-    //    {
-    //        teachers.Remove(observer);
-    //        if (observer is Teacher) {
-    //            Teacher t = observer as Teacher;
-    //            Console.WriteLine($"{t.Name} has been detached...");
-    //        }
-    //    }
-
-    //    public void Notify()
-    //    {
-    //        foreach (Teacher teacher in teachers) 
-    //        {
-    //            Console.WriteLine($"Læreren {teacher.Name} modtog nyheden'{Message}' fra universitetet {Name}");
-    //        }
-    //    }
-    //}
+        public void Notify()
+        {
+            // Run MessageChanged delegate to notify all attached observers
+            // By calling MessageChanged it's calling all attached methods at once
+            MessageChanged();
+        }
+    }
 }
