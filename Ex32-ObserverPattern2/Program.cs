@@ -15,22 +15,23 @@ namespace Ex32_ObserverPattern2
             Student s3 = new Student("Susan");
             Student s4 = new Student("Tobias");
 
-            p.MessageChanged += s1.Update;
-            p.MessageChanged += s2.Update;
+            // Ændret, så academy instansen kalder PropertyChanged eventet istedet for MessageChanged
+            p.PropertyChanged += s1.Update;
+            p.PropertyChanged += s2.Update;
 
             // Events are kind of protection of delegates
             // You can't set an event equal to something
             // p.MessageChanged = null; // If MessageChanged is null only the messages afterwards will be printed to the console
             
-            p.MessageChanged += s3.Update; 
+            p.PropertyChanged += s3.Update; 
 
             p.Message = "Så er der julefrokost!";
 
-            p.MessageChanged -= s1.Update;
+            p.PropertyChanged -= s1.Update;
 
             p.Message = "Så er der fredagsbar!";
 
-            p.MessageChanged += s4.Update;
+            p.PropertyChanged+= s4.Update;
 
             p.Message = "Lektiecaféen er åben!";
 
