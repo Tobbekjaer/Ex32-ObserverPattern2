@@ -10,19 +10,24 @@ using System.Xml.Linq;
 
 namespace Ex32_ObserverPattern2.ConcreteSubject
 {
-    public delegate void OnMessageChanged();
-    public class Academy : Organization
+    public delegate void EventHandler(object sender, EventArgs e);
+    public class Academy : Organization, INotifyMessageChanged
     {
-        public OnMessageChanged MessageChanged;
-
+        // Instans af MessageChanged eventet
+        public event EventHandler MessageChanged;
+        
         private string message;
 
         public string Message
         {
             get { return message; }
             set {
-                message = value;
-                MessageChanged();
+                if(message != value) {
+                    message = value;
+                    // Kalder OnMessageChanged, når Message bliver ændret
+                    OnMessageChanged();
+                }
+              
             }
         }
 
@@ -31,12 +36,15 @@ namespace Ex32_ObserverPattern2.ConcreteSubject
             Address = address;
         }
 
-        public void Notify()
+        // OnMessageChanged metoden skal have kaldet til MessageChanged eventet have to parametre
+        // sender: objektet, der rejser eventet (academy instansen) og e: evt. yderligere data (sæt til null i dette tilfælde)
+        // OnMessageChanged sender beskeder til alle, der abbonnere på eventet MessageChanged (defineres i Main)
+        public void OnMessageChanged()
         {
-            MessageChanged();
+            if (MessageChanged != null) {
+                MessageChanged(this, EventArgs.Empty);
+            }
         }
-
-
-
     }
+
 }

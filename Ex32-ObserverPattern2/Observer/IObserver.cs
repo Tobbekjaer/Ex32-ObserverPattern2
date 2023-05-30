@@ -8,6 +8,7 @@ namespace Ex32_ObserverPattern2.Observer
 {
     public interface IObserver
     {
-        void Update();
+        // Tilretning af IObserver, så Update har samme signatur som EventHandler 
+        void Update(object sender, EventArgs e);
     }
 }

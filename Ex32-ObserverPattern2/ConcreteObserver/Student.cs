@@ -9,20 +9,25 @@ using System.Xml.Linq;
 
 namespace Ex32_ObserverPattern2.ConcreteObserver
 {
-    public class Student : Person
+    public class Student : Person, IObserver
     {
-        Academy academy;
         public string Message { get; set; }
-        public Student(Academy academy, string name) : base(name)
+
+        // Vi har fjernet academy-feltet i Student-klassen og academy parameteren i Constructoren
+        // Da MessageChanged eventet også angiver objektet, der rejste eventet (via sender parameteren)
+        public Student(string name) : base(name)
         {
-            this.academy = academy;
-            Message = academy.Message;
+           
         }
-       
-        public void Update()
+        
+        // Tilrettet Update metoden, så den overholder ændringen af IObserver interfacet
+        public void Update(object sender, EventArgs e)
         {
-           Message = academy.Message;     
-           Console.WriteLine($"Studerende {Name} modtog nyheden '{Message}' fra akademiet {academy.Name}");
+            if (sender is Academy academy) {
+                Console.WriteLine($"Studerende {base.Name} modtog nyheden '{academy.Message}' fra akademiet {academy.Name}");
+            }
         }
+
     }
+
 }
