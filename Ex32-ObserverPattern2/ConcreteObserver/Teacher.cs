@@ -9,21 +9,20 @@ using System.Threading.Tasks;
 namespace Ex32_ObserverPattern2.ConcreteObserver
 {
 
-    //public class Teacher : Person
-    //{
-    //    University university;
-    //    public string Message { get; set; }
+    public class Teacher : Person, IObserver
+    {
+        public string Message { get; set; }
 
-    //    public Teacher(University university, string name) : base(name)
-    //    {
-    //        this.university = university;
-    //        this.Message = university.Message;
-    //    }
+        public Teacher(string name) : base(name)
+        {
 
-    //    public void Update()
-    //    {
-    //        Message = university.Message;
-    //        Console.WriteLine($"Læreren {Name} modtog nyheden'{Message}' fra universitetet {university.Name}");
-    //    }
-    //}
+        }
+
+        public void Update(object sender, EventArgs e)
+        {
+            if (sender is University university) {
+                Console.WriteLine($"Læreren {Name} modtog nyheden'{university.Message}' fra universitetet {university.Name}");
+            }
+        }
+    }
 }
